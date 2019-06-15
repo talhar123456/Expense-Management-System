@@ -1,0 +1,134 @@
+<html>
+
+<head>
+    <title>
+        Edit Expense
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="./add_expense.css">
+</head>
+
+<body>
+    <div class="div_heading">
+        <div class="div_heading_1_left">
+            <div class="div_sample">
+                <img src="./expense.png" width="100%" height="100%">
+            </div>
+        </div>
+        <div class="div_heading_1_right">
+            <div class="div_heading_1_right_welcome">
+                <div class="div_heading_1_right_welcome_user">
+                </div>
+
+                <div class="div_heading_1_right_welcome_logout">
+                    <input type="button" class="button_1" value="Log Out">
+                </div>
+            </div>
+        </div>
+
+        <div class="div_heading_2">
+            Welcome To Expense Management System
+        </div>
+        <br><br><br><br><br>
+        <div class="div_all_expenses">
+            Edit Expense
+        </div>
+        <br>
+        <div class="div_body">
+            <form onsubmit="return add()">
+                <br>
+                <label>Description:</label>
+                <br><br>
+                <input type="text" id="description" placeholder="Enter Description">
+                <br><br>
+                <label>Amount:</label>
+                <br><br>
+                <input type="text" id="amount" placeholder="Enter Amount">
+                <br><br>
+                <label>Catagory:</label>
+                <br><br>
+                <input type="text" id="catagory" placeholder="Select Catagory">
+                <br><br>
+                <div class="div_add">
+                    <input type="submit" class="div_add_button" value="Edit">
+                    <br>
+
+                    <h4>Back to Dashboard</h4>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            let edit = localStorage.getItem("edit");
+            let edit_2 = JSON.parse(edit);
+            console.log(edit_2)
+            let description = document.getElementById("description").defaultValue = edit_2.description;
+            let amount = document.getElementById("amount").defaultValue = edit_2.amount;
+            let catagory = document.getElementById("catagory").defaultValue = edit_2.catagory;
+
+            let add = e => {
+
+                let rightNow = new Date();
+                let h = rightNow.getHours();
+                let m = rightNow.getMinutes();
+                let s = rightNow.getSeconds();
+                let y = rightNow.getFullYear();
+                let m1 = rightNow.getMonth();
+                let d = rightNow.getDate();
+                let session = 'AM';
+
+                if (h > 12) {
+                    h = h - 12;
+                    session = 'PM';
+                }
+                let Created_On = d + " / " + m1 + " / " + y + ",  " + h + " : " + m + " : " + s + session;
+
+                let edit_3 = localStorage.getItem("edit");
+                let edit_4 = JSON.parse(edit_3);
+
+                let id = edit_4.id
+                let description = document.querySelector("#description").value
+                let amount = document.querySelector("#amount").value
+                let catagory = document.querySelector("#catagory").value
+                let userid = edit_4.userid;
+
+                console.log(id)
+                console.log(description)
+                console.log(amount)
+                console.log(catagory)
+                console.log(userid)
+
+                let update = {
+                    id,
+                    userid,
+                    description,
+                    catagory,
+                    amount,
+                    Created_On
+                };
+
+                console.log(update)
+                let ab = localStorage.getItem("all_expense")
+                let bc = JSON.parse(ab)
+
+                console.log(bc);
+
+                for (let i = 0; i < bc.length; i++) {
+                    if (bc[i].id == edit_4.id) {
+                        bc.splice(i, 1, update)
+                        break
+                    }
+                }
+                console.log(bc)
+
+
+                localStorage.removeItem("all_expense");
+                localStorage.setItem("all_expense", JSON.stringify(bc))
+                location.replace("all_expense.html")
+
+                return false;
+            }
+        </script>
+</body>
+
+</html>

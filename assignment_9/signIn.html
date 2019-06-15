@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>
+            Sign In
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="./signIn.css">
+    </head>
+
+    <body>
+        <div class="div_heading">
+            <div class="div_heading_1">
+                <div class="div_sample">
+                    <img src="./expense.png" width="100%" height="100%">                    
+                </div>
+            </div>
+
+            <div class="div_heading_2">
+                Welcome To Expense Management System
+            </div>
+        </div>
+        <br>
+        <div class="div_body">
+            <br>
+            <label>Email:</label>
+            <br><br>
+            <input type="email" id="email" required="required" placeholder="Enter email">
+            <br> <br>
+            <label>Password:</label>
+            <br> <br>
+            <input type="password" id="password" required="required" placeholder="password">
+            <br> <br>    
+                <div class="div_body_button">
+                    <br>
+                    <form onsubmit="return onSignIn()">
+                        <input type="submit" class="signUp_button" value="Sign In">
+                    </form>
+                    <form onsubmit="return back_to_sign_up()">
+                        <input type="submit" class="signUp_button" value="Back to Sign Up">
+                    </form>
+                </div>
+        </div>
+
+        <script>
+            let onSignIn = e => 
+            {
+                let password = document.querySelector("#password").value;
+                let email = document.querySelector("#email").value;
+                let users = localStorage.getItem("users");
+                console.log(users)
+                console.log(password);
+                console.log(email);
+
+                if (users !== null)
+                {
+                    users = JSON.parse(users)
+                }
+                else
+                {
+                    users = []
+                }
+
+                let data = {
+                    email,
+                    password
+                }
+
+                let result = users.filter(user => {
+                    if (user.email == email && user.password == password){
+                        // alert("HHHH")
+                        return true
+                    }
+                })
+                if (result.length) {
+                    
+                    localStorage.setItem("user",JSON.stringify(result[0]))
+                    // alert("hhh")
+                    location.replace ("all_expense.html")
+                }
+                else{
+                    alert("error")
+                }
+                return false
+            }
+            let back_to_sign_up = e => {
+                location.replace("main.html")
+                return false
+            }
+        </script>
+    </body>
+</html>

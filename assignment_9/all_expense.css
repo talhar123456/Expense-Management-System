@@ -1,0 +1,202 @@
+body
+{
+    /* background-color: black; */
+}
+
+.div_heading
+{
+    width: 100%;
+    height: 35%;
+    /* background-color: aqua; */
+}
+
+.div_heading_1_left
+{
+    width: 50%;
+    height: 50%;
+    /* background-color: yellow; */
+    float: left;
+}
+
+.div_heading_1_right
+{
+    width: 50%;
+    height: 50%;
+    float: right;
+    /* background-color: orange; */
+}
+
+.div_heading_1_right_welcome
+{
+    width: 50%;
+    height: 50%;
+    margin-left: 50%;
+    /* background-color: red; */
+}
+
+.div_heading_1_right_welcome_user
+{
+    width: 70%;
+    height: 100%;
+    float: left;
+    background-color: aqua;
+}
+
+.div_heading_1_right_welcome_logout
+{
+    width: 30%;
+    height: 100%;
+    float: left;
+    /* border-radius: 10%; */
+    /* background-color: blue; */
+}
+
+.button_1
+{
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    border: none;
+    background-color: yellow;
+    border-radius: 10%;
+}
+
+.div_sample 
+{
+    margin: 20px;
+    width: 80px;
+    height: 80px;
+    margin-left: 94%;
+    /* background: #f00; */
+    -webkit-animation: spin 3s infinite linear;
+}
+
+@-webkit-keyframes spin 
+{
+    0%  {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);}   
+}
+
+.div_heading_2
+{
+    width: 100%;
+    height: 50%;
+    /* background-color: aqua; */
+    color:#0096d4;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-size: 40px;
+}
+
+.div_all_expenses
+{
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    font-size: 35px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.div_3_buttons
+{
+    width: 100%;
+    height: 20%;
+    /* background-color: aqua; */
+    text-align: center;
+}
+
+.div_button_1
+{
+    width: 15%;
+    height: 100%;
+    float: left;
+    margin-left: 28%;
+    background-color: yellow;
+    border-radius: 15%;
+}
+
+.div_3_button_1
+{
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    border: none;
+    background-color: yellow;
+    border-radius: 15%;
+}
+
+.div_button_2
+{
+    width: 15%;
+    height: 100%;
+    float: left;
+    border-radius: 15%;
+    /* background-color: aqua; */
+}
+
+.div_3_button_2
+{
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    border: none;
+    background-color: aqua;
+    border-radius: 15%;
+}
+
+.div_button_3
+{
+    width: 15%;
+    height: 100%;
+    float: left;
+    border-radius: 15%;
+    background-color: yellow;
+}
+
+.div_3_button_3
+{
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    border: none;
+    background-color: yellow;
+    border-radius: 15%;
+}
+
+.div_search
+{
+    width: 25%;
+    height: 20%;
+    margin-left: 38%;
+    background-color: #0096d4;
+}
+
+.div_search input
+{
+    width: 100%;
+    height: 100%;
+}
+
+.div_table
+{
+    width: 100%;
+    height: 50%;
+    background-color: aquamarine;
+}
+
+.table
+{
+    width: 100%;
+    border: 1px solid red;
+}
+
+.table tr th
+{
+    /* width: 100%; */
+    border: 1px solid red;
+    padding: 10px;
+}

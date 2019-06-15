@@ -1,0 +1,239 @@
+<html>
+
+<head>
+    <title>
+        All Expenses
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="./all_expense.css">
+</head>
+
+<body>
+    <div class="div_heading">
+        <div class="div_heading_1_left">
+            <div class="div_sample">
+                <img src="./expense.png" width="100%" height="100%">
+            </div>
+        </div>
+        <div class="div_heading_1_right">
+            <div class="div_heading_1_right_welcome">
+                <div class="div_heading_1_right_welcome_user" id="uname">
+                    Welcome
+                    <script>
+                        let uname = localStorage.getItem("user");
+                        let aaaa = JSON.parse(uname)
+                        document.getElementById("uname").innerHTML = aaaa.name;
+                    </script>
+                </div>
+
+                <div class="div_heading_1_right_welcome_logout">
+                    <form onsubmit="return log_out()">
+                        <input type="submit" class="button_1" value="Log Out">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="div_heading_2">
+            Welcome To Expense Management System
+        </div>
+        <br><br><br><br><br>
+        <div class="div_all_expenses">
+            All Expenses
+        </div>
+
+        <div class="div_3_buttons">
+            <div class="div_button_1">
+                <form onsubmit="return addExpense()">
+                    <input type="submit" class="div_3_button_1" value="Add Expenses!">
+                </form>
+            </div>
+            <div class="div_button_2">
+                <form onsubmit="return allCatagories()">
+                    <input type="submit" class="div_3_button_2" value="All Catagories">
+                </form>
+            </div>
+            <div class="div_button_3">
+                <form onsubmit="return generateReport()">
+                    <input type="submit" class="div_3_button_3" value="Generate Report">
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="div_search">
+            <form onkeyup="return searching()">
+                <input type="text" id="myInput" placeholder="Search By Catagory..">
+            </form>
+        </div>
+
+    </div>
+    <br><br><br><br><br><br><br><br><br>
+    <div class="div_table">
+        <table id="myTable" class="table" border="1px">
+            <th>ID</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Catagory</th>
+            <th>Created On</th>
+            <th>Actions</th>
+            </tr>
+
+            <script>
+                let a = localStorage.getItem("all_expense")
+
+                a = JSON.parse(a);
+                console.log(a);
+
+                for (i = 0; i < a.length; i++) {
+                    document.write("<tr><td>" + a[i].id + "</td>" + "<td>" + a[i].description +
+                        "</td>" + "<td>" + a[i].amount + "</td>" + "<td>" +
+                        a[i].catagory + "</td><td>" + a[i].Created_On + "</td><td>" +
+                        "<input type = 'button' value = 'Edit' onclick='edit(this)'>" +
+                        " <input type= 'button' value= 'Delete' onClick ='deleting(this)'>" +
+                        "</td>" + "</tr>");
+                }
+
+                /////////////////////////////////////////Deleting/////////////////////////////////////////
+                function deleting(r) {
+                    ///////////////////////////////Delete from HTML//////////////// 
+                    // alert("ss")
+                    let i = r.parentNode.parentNode.rowIndex;
+                    document.getElementById("myTable").deleteRow(i);
+                    ///////////////////////////////Delete from HTML/////////////////
+                    array_1 = [];
+                    let x = 0;
+                    let table = document.getElementById("myTable");
+
+                    for (let r = 0, n = table.rows.length; r < n; r++) {
+                        for (let c = 0, m = table.rows[r].cells.length; c < m; c++) {
+                            array_1[x] = (table.rows[r].cells[c].innerHTML);
+                            x++;
+                        }
+                    }
+                    console.log(array_1)
+
+                    array_2 = [];
+                    let y = 0;
+                    for (let d = 6; d < array_1.length; d++) {
+                        array_2[y] = array_1[d];
+                        y++;
+                        d = d + 5;
+                    }
+                    console.log(array_2)
+
+                    let ab = localStorage.getItem("all_expense")
+                    let bc = JSON.parse(ab)
+
+                    console.log(bc);
+
+                    for (let j = 0; j < bc.length; j++) {
+                        if (bc[j].id != array_2[j]) {
+                            bc.splice(j, 1)
+                            break;
+                        }
+                    }
+                    console.log(bc)
+                    localStorage.removeItem("all_expense")
+                    localStorage.setItem("all_expense", JSON.stringify(bc))
+
+
+                    return false
+                }
+
+
+/////////////////////////////////////////Deleting/////////////////////////////////////////
+            </script>
+        </table>
+    </div>
+
+    //script for all function calling
+    <script>
+        let addExpense = e => {
+            location.replace("add_expense.html")
+
+            return false
+        }
+
+        let allCatagories = e => {
+            location.replace("all_catagories.html")
+
+            return false
+        }
+
+        let log_out = e => {
+            location.replace("main.html")
+
+            return false
+        }
+
+        const searching = e => {
+            let input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[3];
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    }
+                    else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        let edit = r => {
+            let i = r.parentNode.parentNode.rowIndex;
+            console.log(i)
+
+            array_1 = [];
+            let x = 0;
+            let table = document.getElementById("myTable");
+
+            for (let r = 0, n = table.rows.length; r < n; r++) {
+                for (let c = 0, m = table.rows[r].cells.length; c < m; c++) {
+                    array_1[x] = (table.rows[r].cells[c].innerHTML);
+                    x++;
+                }
+            }
+            console.log(array_1)
+
+            array_2 = [];
+            let y = 0;
+            for (let d = 6; d < array_1.length; d++) {
+                array_2[y] = array_1[d];
+                y++;
+                d = d + 5;
+            }
+            console.log(array_2)
+
+            let v = 1;
+            let k = 1;
+            for (k = 1; k < i; k++) {
+                if (i == v) {
+                    break;
+                }
+                v++;
+            }
+            alert(k)
+            let m = localStorage.getItem("all_expense")
+            let n = JSON.parse(m)
+            let o = n[k - 1]
+            console.log(o)
+
+            localStorage.setItem("edit", JSON.stringify(o))
+            location.replace("edit_expense.html")
+        }
+
+
+    </script>
+
+</body>
+
+</html>

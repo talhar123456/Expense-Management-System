@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <title>
+        All Catagories
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="./all_catagories.css">
+</head>
+
+<body>
+    <div class="div_heading">
+        <div class="div_heading_1_left">
+            <div class="div_sample">
+                <img src="./expense.png" width="100%" height="100%">
+            </div>
+        </div>
+        <div class="div_heading_1_right">
+            <div class="div_heading_1_right_welcome">
+                <div class="div_heading_1_right_welcome_user">
+                </div>
+
+                <div class="div_heading_1_right_welcome_logout">
+                    <input type="button" class="button_1" value="Log Out">
+                </div>
+            </div>
+        </div>
+
+        <div class="div_heading_2">
+            Welcome To Expense Management System
+        </div>
+        <br><br><br><br><br>
+        <div class="div_all_expenses">
+            All Catagories
+        </div>
+
+        <div class="div_3_buttons">
+            <div class="div_button_2">
+                <input type="button" class="div_3_button_2" value="Add Catagories">
+                <br><br>
+                <input type="button" class="div_3_button_2" value="Back to Dashboard">
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br>
+    <div class="div_table">
+        <table class="table" border="1px">
+            <tr>
+                <th>ID</th>
+                <th>Catagory Name</th>
+                <th>Created On</th>
+            </tr>
+
+            <script>
+                let a = localStorage.getItem("all_catagory")
+                a = JSON.parse(a);
+                console.log(a);
+
+                for (i = 0; i < a.length; i++) {
+                    document.write("<tr><td>" + a[i].id + "</td>" + "<td>" + a[i].catagory +
+                        "</td>" + "<td>" + a[i].Created_On + "</td></tr>");
+                }
+            </script>
+        </table>
+    </div>
+
+</body>
+
+</html>

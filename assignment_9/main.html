@@ -1,0 +1,114 @@
+<html>
+
+<head>
+  <title>
+    Main Page
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="./main.css" />
+</head>
+
+<body>
+  <div class="div_heading">
+    <div class="div_heading_1">
+      <div class="div_sample">
+        <img src="./expense.png" width="100%" height="100%" />
+      </div>
+    </div>
+
+    <div class="div_heading_2">
+      Welcome To Expense Management System
+    </div>
+  </div>
+
+  <br />
+  <div class="div_body">
+    <form onsubmit="return onSignUp()">
+      <br />
+      <label>User Name:</label>
+      <br />
+      <br />
+      <input type="name" name="name" id="name" required="required" placeholder="name" />
+      <br />
+      <br />
+      <label>Email:</label>
+      <br />
+      <br />
+      <input type="email" name="email" id="email" required="required" placeholder="e-mail" />
+      <br />
+      <br />
+      <label>Password:</label>
+      <br />
+      <br />
+      <input type="password" name="password" id="password" required="required" placeholder="password" />
+      <br /><br />
+
+      <div class="div_body_button">
+        <br />
+        <input type="submit" class="signUp_button" value="Sign Up" />
+        <br /><br />
+        _OR_
+        <br /><br />
+    </form>
+
+    <form onsubmit="return onSignIn()">
+      <input type="submit" class="signUp_button" value="Sign In" />
+    </form>
+
+  </div>
+  </div>
+
+  <script>
+    let onSignUp = e => {
+
+      let min = 1;
+      let max = 99999;
+      let id = Math.floor(Math.random() * (max * min) + min);
+
+      let name = document.querySelector("#name").value;
+      let email = document.querySelector("#email").value;
+      let password = document.querySelector("#password").value;
+      console.log(name);
+      console.log(email);
+      console.log(password);
+
+      let users = localStorage.getItem("users");
+
+      if (users == null) {
+        users = [];
+      } else {
+        users = JSON.parse(users);
+      }
+      let data = {
+        id,
+        name,
+        email,
+        password
+      };
+
+      console.log(data);
+      users.push(data);
+
+      users = JSON.stringify(users);
+
+      localStorage.setItem("users", users);
+      //array users
+
+      alert("Sign up successful")
+
+      localStorage.setItem("user", JSON.stringify(data));
+      //object user
+
+      return false;
+      // alert(name)
+    };
+
+    let onSignIn = e => {
+      location.replace("signIn.html")
+
+      return false
+    }
+  </script>
+</body>
+
+</html>
